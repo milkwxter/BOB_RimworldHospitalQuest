@@ -2,7 +2,7 @@
 <Defs>
     <QuestScriptDef>
         <defName>BOB_Hospital_Quest</defName>
-        <autoAccept>True</autoAccept>
+        <autoAccept>False</autoAccept>
         <questNameRules>
             <rulesStrings>
                 <li>questName->Hospital Rescue Mission</li>
