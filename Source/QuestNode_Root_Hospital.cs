@@ -1,7 +1,10 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
 using RimWorld.QuestGen;
+using System.Collections.Generic;
+using System;
 using Verse;
+using Verse.Grammar;
 
 namespace Hospital_Rimworld
 {
@@ -16,6 +19,7 @@ namespace Hospital_Rimworld
         {
             // create the most important variables
             Slate slate = QuestGen.slate;
+            Quest quest = QuestGen.quest;
 
             // what is the enemy faction
             Faction raiders = Find.FactionManager.RandomRaidableEnemyFaction();
@@ -43,15 +47,29 @@ namespace Hospital_Rimworld
             // add it to the world
             Find.WorldObjects.Add(site);
 
+            // update the slate
+            slate.Set("hospital", site);
+            slate.Set("faction", site.Faction);
+
             // finally do the quest part
             QuestPart_SpawnWorldObject spawnPart = new QuestPart_SpawnWorldObject();
             spawnPart.worldObject = site;
-            QuestGen.quest.AddPart(spawnPart);
+            quest.AddPart(spawnPart);
+
+            // more quest stuff
+            string signalEnemiesDefeated = QuestGenUtility.HardcodedSignalWithQuestID("hospital.AllEnemiesDefeated");
+            string signalMapRemoved = QuestGenUtility.HardcodedSignalWithQuestID("hospital.MapRemoved");
+            QuestPart_PassAll passAll = new QuestPart_PassAll();
+            passAll.inSignals.Add(signalEnemiesDefeated);
+            passAll.inSignals.Add(signalMapRemoved);
+            passAll.outSignal = "hospitalQuestSuccess";
+
+            quest.Message("You defeated the enemies! Now steal some stuff and run!", MessageTypeDefOf.PositiveEvent, false, null, null, signalEnemiesDefeated);
+            quest.End(QuestEndOutcome.Success, 0, null, passAll.outSignal);
         }
 
         protected override bool TestRunInt(Slate slate)
         {
-            // always work
             return true;
         }
     }
