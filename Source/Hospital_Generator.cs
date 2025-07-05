@@ -83,6 +83,10 @@ namespace Hospital_Rimworld
                     }
                 }
             }
+
+            // lord job so pirates dont leave
+            IntVec3 defendSpot = cellRect.CenterCell;
+            Lord pirateLord = LordMaker.MakeNewLord(parentFaction, new LordJob_DefendBase(parentFaction, defendSpot, 25000, false), map, allMyPirates);
         }
     }
 }
