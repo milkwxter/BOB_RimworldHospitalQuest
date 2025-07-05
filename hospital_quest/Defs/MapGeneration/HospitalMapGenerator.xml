@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <MapGeneratorDef ParentName="MapCommonBase">
+    <defName>BOB_HospitalMapGenerator</defName>
+    <genSteps>
+      <li>RocksFromGrid</li>
+      <li>BOB_Hospital_GenStep</li>
+    </genSteps>
+  </MapGeneratorDef>
+  
+  <!-- Generate hospital -->
+  <GenStepDef>
+    <defName>BOB_Hospital_GenStep</defName>
+    <order>400</order>
+    <genStep Class="Hospital_Rimworld.GenStep_SpawnHospitalLayout"/>
+    <linkWithSite>BOB_Hospital</linkWithSite>
+  </GenStepDef>
+  
+</Defs>

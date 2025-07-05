@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <VEF.Storyteller.QuestChainDef>
+        <defName>BOB_Hospital</defName>
+        <iconPath>UI/QuestChainIcon</iconPath>
+        <label>Hospital Raid</label>
+        <description>This quest will have you travel and stop a pirate gang who has taken over a nearby hospital base.</description>
+    </VEF.Storyteller.QuestChainDef>
+
+</Defs>

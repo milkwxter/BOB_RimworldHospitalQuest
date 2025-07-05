@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <SitePartDef>
+    <defName>BOB_Hospital</defName>
+    <label>raided hospital</label>
+    <description>A raided hospital.</description>
+    <gravShipsCanLandOn>true</gravShipsCanLandOn>
+    <tags Inherit="False">
+      <li>BOB_RaidedHospital</li>
+    </tags>
+	
+    <siteTexture>World/WorldObjects/Sites/Outpost</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/Outpost</expandingIconTexture>
+    <applyFactionColorToSiteTexture>true</applyFactionColorToSiteTexture>
+	
+    <showFactionInInspectString>true</showFactionInInspectString>
+	
+    <requiresFaction>true</requiresFaction>
+    <approachOrderString>Attack {0}</approachOrderString>
+    <approachingReportString>Attacking {0}.</approachingReportString>
+	
+    <arrivedLetter>There is an enemy presence in this area.</arrivedLetter>
+    <arrivedLetterDef>NegativeEvent</arrivedLetterDef>
+	
+    <wantsThreatPoints>true</wantsThreatPoints>
+    <minThreatPoints>300</minThreatPoints>
+  </SitePartDef>
+
+</Defs>

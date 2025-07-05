@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <QuestScriptDef>
+        <defName>BOB_Hospital_Quest</defName>
+        <autoAccept>True</autoAccept>
+        <questNameRules>
+            <rulesStrings>
+                <li>questName->Hospital Rescue Mission</li>
+            </rulesStrings>
+        </questNameRules>
+        <questDescriptionRules>
+            <rulesStrings>
+                <li>questDescription(asker_factionLeader==True)->[asker_nameDef], [asker_faction_leaderTitle] of [asker_faction_name], has contacted us to save their hospital base.</li>
+                </rulesStrings>
+        </questDescriptionRules>
+        <root Class="QuestNode_Sequence">
+            <nodes>
+                <li Class="QuestNode_RandomNode">
+                    <nodes>
+                        <li Class="QuestNode_GetPawn">
+                            <selectionWeight>1.0</selectionWeight>
+                            <storeAs>asker</storeAs>
+                            <mustBeFactionLeader>true</mustBeFactionLeader>
+                            <mustBeNonHostileToPlayer>true</mustBeNonHostileToPlayer>
+                        </li>
+                    </nodes>
+                </li>
+                <li Class="Hospital_Rimworld.QuestNode_Root_Hospital" />
+            </nodes>
+        </root>
+        <modExtensions>
+            <li Class="VEF.Storyteller.QuestChainExtension">
+                <questChainDef>BOB_Hospital</questChainDef>
+                <conditionMinDaysSinceStart>20</conditionMinDaysSinceStart>
+                <isRepeatable>false</isRepeatable>
+                <grantAgainOnFailure>True</grantAgainOnFailure>
+                <daysUntilGrantAgainOnFailure>7</daysUntilGrantAgainOnFailure>
+            </li>
+        </modExtensions>
+    </QuestScriptDef>
+</Defs>
