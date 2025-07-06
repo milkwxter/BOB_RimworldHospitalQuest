@@ -21,22 +21,15 @@ namespace Hospital_Rimworld
 
             // spawn medicine according to size
             int medStacks = Math.Min(roomSize / 20, 2);
-            Log.Message($"medStacks: {medStacks}");
             for (int i = 0; i < medStacks; i++)
             {
                 IntVec3 dropCell = room.Cells.Where(c => c.Standable(map)).InRandomOrder().FirstOrDefault();
-
-                var standableCells = room.Cells.Where(c => c.Standable(map)).ToList();
-                Log.Message($"Room size: {room.CellCount}, Standable cells: {standableCells.Count}");
 
                 if (dropCell != IntVec3.Invalid)
                 {
                     // get our loot table
                     ThingSetMakerDef lootDef = DefDatabase<ThingSetMakerDef>.GetNamed("BOB_Hospital_LootSet");
                     List<Thing> loot = lootDef.root.Generate(new ThingSetMakerParams());
-
-                    Log.Message($"LootDef found: {lootDef?.defName}");
-                    Log.Message($"Generated loot count: {loot.Count}");
 
                     // spawn item if the loot table has entries
                     if (loot.Any())
@@ -46,6 +39,40 @@ namespace Hospital_Rimworld
                     }
                 }
             }
+        }
+
+        private void SpawnPirates(Room room)
+        {
+            // set vars
+            int roomSize = room.CellCount;
+
+            // create list of pirates to defend that room, immersive
+            List<Pawn> piratesDefendingRoom = new List<Pawn>();
+
+            // spawn pirates according to size
+            int pirateCount = Math.Min(roomSize / 30, 3);
+            for (int i = 0; i < pirateCount; i++)
+            {
+                PawnGenerationRequest req = new PawnGenerationRequest(
+                    kind: PawnKindDefOf.Pirate,
+                    faction: room.Map.ParentFaction,
+                    context: PawnGenerationContext.NonPlayer,
+                    tile: room.Map.Tile,
+                    forceGenerateNewPawn: true,
+                    allowDead: false
+                );
+
+                Pawn pirate = PawnGenerator.GeneratePawn(req);
+                IntVec3 spawnCell = room.Cells.Where(c => c.Standable(room.Map)).InRandomOrder().FirstOrDefault();
+                if (spawnCell != IntVec3.Invalid)
+                {
+                    GenSpawn.Spawn(pirate, spawnCell, room.Map);
+                    piratesDefendingRoom.Add(pirate);
+                }
+            }
+
+            // lord job so pirates dont leave and instead defend their room
+            Lord pirateLord = LordMaker.MakeNewLord(room.Map.ParentFaction, new LordJob_DefendBase(room.Map.ParentFaction, room.Cells.RandomElement(), 25000, false), room.Map, piratesDefendingRoom);
         }
 
         public override void Generate(Map map, GenStepParams parms)
@@ -69,12 +96,10 @@ namespace Hospital_Rimworld
                 if (room != null && !uniqueRooms.Contains(room))
                 {
                     uniqueRooms.Add(room);
-                    Log.Message("[BOB Hospital Quest] Found a unique room!");
                 }
             }
 
             // spawn medicine and pirates
-            List<Pawn> allMyPirates = new List<Pawn>();
             foreach (Room room in uniqueRooms)
             {
                 // error handling
@@ -86,32 +111,9 @@ namespace Hospital_Rimworld
                 // spawn random medicine around
                 SpawnMedicalLoot(room);
 
-                // spawn pirates according to size
-                int pirateCount = Math.Min(roomSize / 30, 3);
-                for (int i = 0; i < pirateCount; i++)
-                {
-                    PawnGenerationRequest req = new PawnGenerationRequest(
-                        kind: PawnKindDefOf.Pirate,
-                        faction: parentFaction,
-                        context: PawnGenerationContext.NonPlayer,
-                        tile: map.Tile,
-                        forceGenerateNewPawn: true,
-                        allowDead: false
-                    );
-
-                    Pawn pirate = PawnGenerator.GeneratePawn(req);
-                    IntVec3 spawnCell = room.Cells.Where(c => c.Standable(map)).InRandomOrder().FirstOrDefault();
-                    if (spawnCell != IntVec3.Invalid)
-                    {
-                        GenSpawn.Spawn(pirate, spawnCell, map);
-                        allMyPirates.Add(pirate);
-                    }
-                }
+                // spawn a few pirates in that room
+                SpawnPirates(room);
             }
-
-            // lord job so pirates dont leave
-            IntVec3 defendSpot = cellRect.CenterCell;
-            Lord pirateLord = LordMaker.MakeNewLord(parentFaction, new LordJob_DefendBase(parentFaction, defendSpot, 25000, false), map, allMyPirates);
         }
     }
 }
