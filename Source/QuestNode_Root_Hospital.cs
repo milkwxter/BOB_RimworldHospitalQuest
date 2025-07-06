@@ -15,12 +15,8 @@ namespace Hospital_Rimworld
             return TileFinder.TryFindNewSiteTile(out tile, 5, 15, allowCaravans: false, null, 0.5f, canSelectComboLandmarks: true, TileFinderMode.Near, exitOnFirstTileFound);
         }
 
-        protected override void RunInt()
+        private Site GenerateSite(Slate slate, out string siteMapGeneratedSignal, out string siteMapRemovedSignal)
         {
-            // create the most important variables
-            Slate slate = QuestGen.slate;
-            Quest quest = QuestGen.quest;
-
             // what is the enemy faction
             Faction raiders = Find.FactionManager.RandomRaidableEnemyFaction();
 
@@ -48,24 +44,51 @@ namespace Hospital_Rimworld
             Find.WorldObjects.Add(site);
 
             // update the slate
-            slate.Set("hospital", site);
+            slate.Set("site", site);
             slate.Set("faction", site.Faction);
 
-            // finally do the quest part
+            // create signals for this site
+            siteMapRemovedSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapRemoved");
+            siteMapGeneratedSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.MapGenerated");
+
+            // return our beautiful site so we can access it again
+            return site;
+        }
+
+        protected override void RunInt()
+        {
+            // create the most important variables
+            Slate slate = QuestGen.slate;
+            Quest quest = QuestGen.quest;
+
+            // add site to map and update slate
+            Site site = GenerateSite(slate, out var siteMapGeneratedSignal, out var siteMapRemovedSignal);
+
+            // do the quest part
             QuestPart_SpawnWorldObject spawnPart = new QuestPart_SpawnWorldObject();
             spawnPart.worldObject = site;
             quest.AddPart(spawnPart);
 
-            // more quest stuff
-            string signalEnemiesDefeated = QuestGenUtility.HardcodedSignalWithQuestID("hospital.AllEnemiesDefeated");
-            string signalMapRemoved = QuestGenUtility.HardcodedSignalWithQuestID("hospital.MapRemoved");
-            QuestPart_PassAll passAll = new QuestPart_PassAll();
-            passAll.inSignals.Add(signalEnemiesDefeated);
-            passAll.inSignals.Add(signalMapRemoved);
-            passAll.outSignal = "hospitalQuestSuccess";
+            // simple quest signal
+            string siteMapEnemiesDefeatedSignal = QuestGenUtility.HardcodedSignalWithQuestID("site.AllEnemiesDefeated");
 
-            quest.Message("You defeated the enemies! Now steal some stuff and run!", MessageTypeDefOf.PositiveEvent, false, null, null, signalEnemiesDefeated);
-            quest.End(QuestEndOutcome.Success, 0, null, passAll.outSignal);
+            // Combine both signals
+            QuestPart_PassAll passAll = new QuestPart_PassAll();
+            passAll.inSignals.Add(siteMapEnemiesDefeatedSignal);
+            passAll.inSignals.Add(siteMapRemovedSignal);
+            passAll.outSignal = "site.BothConditionsMet";
+            quest.AddPart(passAll);
+
+            // quest success condition
+            quest.Message("You defeated the enemies! Now steal some stuff and run!", MessageTypeDefOf.PositiveEvent, false, null, null, siteMapEnemiesDefeatedSignal);
+            quest.SignalPassActivable(delegate {
+                quest.End(QuestEndOutcome.Success, 0, null, null, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: true);
+            }, siteMapGeneratedSignal, "site.BothConditionsMet");
+
+            // quest failure condition // this one always activates FUCK!!!!!!!!
+            quest.SignalPassActivable(delegate {
+                quest.End(QuestEndOutcome.Fail, 0, null, null, QuestPart.SignalListenMode.OngoingOnly, sendStandardLetter: true);
+            }, siteMapGeneratedSignal, siteMapRemovedSignal);
         }
 
         protected override bool TestRunInt(Slate slate)
