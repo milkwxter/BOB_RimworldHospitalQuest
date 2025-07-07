@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<KCSG.StructureLayoutDef>
+	  <defName>BOB_SmallHospital</defName>
+	  <spawnConduits>false</spawnConduits>
+	  <layouts>
+		<li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Door_WoodLog,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,HospitalBed_Steel_North,.,HospitalBed_Steel_North,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,HospitalBed_Steel_West,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,HospitalBed_Steel_West,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,Wall_BlocksLimestone,Door_WoodLog,Wall_BlocksLimestone,Door_WoodLog,Wall_BlocksLimestone,Wall_BlocksLimestone,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,HospitalBed_Steel_South,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.,.,.,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,.,HospitalBed_Steel_South,.,.,HospitalBed_Steel_South,.,HospitalBed_Steel_South,.,Wall_BlocksLimestone,.,.,HospitalBed_Steel_South,.,.,HospitalBed_Steel_South,.,.,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,Wall_BlocksLimestone,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		  <li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		</li>
+	  </layouts>
+	  <terrainGrid>
+		<li>.,.,.,.,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,.,.,.,.</li>
+		<li>.,.,.,.,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,.,.,.,.</li>
+		<li>.,.,.,.,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,Concrete,.,.,.,.</li>
+		<li>.,.,.,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,SterileTile,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,PavedTile,.,.,.</li>
+		<li>.,.,.,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,PavedTile,.,.,.</li>
+		<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+		<li>.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.,.</li>
+	  </terrainGrid>
+	  <tags>
+		<li>BOB_Hospital_Layout</li>
+	  </tags>
+	</KCSG.StructureLayoutDef>
+
+</Defs>

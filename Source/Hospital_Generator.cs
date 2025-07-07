@@ -78,7 +78,9 @@ namespace Hospital_Rimworld
         public override void Generate(Map map, GenStepParams parms)
         {
             // choose which layout to spawn
-            KCSG.StructureLayoutDef layoutDef = DefDatabase<KCSG.StructureLayoutDef>.GetNamed("BOB_HospitalTest");
+            var allLayouts = DefDatabase<KCSG.StructureLayoutDef>.AllDefsListForReading;
+            var hospitalLayouts = allLayouts.Where(def => def.tags != null && def.tags.Contains("BOB_Hospital_Layout")).ToList();
+            KCSG.StructureLayoutDef layoutDef = hospitalLayouts.RandomElement();
 
             // spawn the layout
             Faction parentFaction = map.ParentFaction;

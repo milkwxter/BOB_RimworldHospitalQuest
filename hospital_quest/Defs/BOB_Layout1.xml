@@ -166,6 +166,9 @@
 		<li>ludeon.rimworld.biotech</li>
 		<li>ludeon.rimworld.royalty</li>
 	  </modRequirements>
+	  <tags>
+		<li>BOB_Hospital_Layout</li>
+	  </tags>
 	</KCSG.StructureLayoutDef>
 
 </Defs>
