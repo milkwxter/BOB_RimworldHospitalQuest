@@ -11,7 +11,7 @@
     </tags>
 	
     <siteTexture>World/WorldObjects/Sites/Outpost</siteTexture>
-    <expandingIconTexture>World/WorldObjects/Expanding/Sites/Outpost</expandingIconTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/BOB_Hospital</expandingIconTexture>
     <applyFactionColorToSiteTexture>true</applyFactionColorToSiteTexture>
 	
     <showFactionInInspectString>true</showFactionInInspectString>
@@ -22,9 +22,6 @@
 	
     <arrivedLetter>There is an enemy presence in this area.</arrivedLetter>
     <arrivedLetterDef>NegativeEvent</arrivedLetterDef>
-	
-    <wantsThreatPoints>true</wantsThreatPoints>
-    <minThreatPoints>300</minThreatPoints>
   </SitePartDef>
 
 </Defs>

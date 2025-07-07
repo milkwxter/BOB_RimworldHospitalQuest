@@ -2,29 +2,19 @@
 <Defs>
     <QuestScriptDef>
         <defName>BOB_Hospital_Quest</defName>
-        <autoAccept>False</autoAccept>
+        <autoAccept>True</autoAccept>
         <questNameRules>
             <rulesStrings>
-                <li>questName->Hospital Rescue Mission</li>
+                <li>questName->Hospital Interception</li>
             </rulesStrings>
         </questNameRules>
         <questDescriptionRules>
             <rulesStrings>
-                <li>questDescription(asker_factionLeader==True)->[asker_nameDef], [asker_faction_leaderTitle] of [asker_faction_name], has contacted us to save their hospital base.</li>
+                <li>questDescription->We've intercepted messages about a nearby hospital base that has been taken over by a pirate gang known as the "Barrels".</li>
                 </rulesStrings>
         </questDescriptionRules>
         <root Class="QuestNode_Sequence">
             <nodes>
-                <li Class="QuestNode_RandomNode">
-                    <nodes>
-                        <li Class="QuestNode_GetPawn">
-                            <selectionWeight>1.0</selectionWeight>
-                            <storeAs>asker</storeAs>
-                            <mustBeFactionLeader>true</mustBeFactionLeader>
-                            <mustBeNonHostileToPlayer>true</mustBeNonHostileToPlayer>
-                        </li>
-                    </nodes>
-                </li>
                 <li Class="Hospital_Rimworld.QuestNode_Root_Hospital" />
             </nodes>
         </root>
