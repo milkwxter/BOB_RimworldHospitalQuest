@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using Verse;
 using Verse.Grammar;
+using Verse.Noise;
 
 namespace Hospital_Rimworld
 {
@@ -12,7 +13,18 @@ namespace Hospital_Rimworld
     {
         private bool TryFindSiteTile(out PlanetTile tile, bool exitOnFirstTileFound = false)
         {
-            return TileFinder.TryFindNewSiteTile(out tile, 5, 8, allowCaravans: false, null, 0f, canSelectComboLandmarks: true, TileFinderMode.Near, exitOnFirstTileFound);
+            return TileFinder.TryFindNewSiteTile(
+                out tile,
+                minDist: 5,
+                maxDist: 8,
+                allowedLandmarks: null,
+                selectLandmarkChance: 0f,
+                canSelectComboLandmarks: false,
+                tileFinderMode: TileFinderMode.Near,
+                exitOnFirstTileFound: true,
+                canBeSpace: false,
+                validator: x => Find.WorldGrid[x].hilliness == Hilliness.Flat
+            );
         }
 
         private Site GenerateSite(Quest quest, Slate slate)
@@ -20,7 +32,7 @@ namespace Hospital_Rimworld
             // what is the enemy faction
             Faction raiders = Find.FactionManager.RandomRaidableEnemyFaction();
 
-            // get the site part def
+            // find my sitepart
             SitePartDef sitePartDef = DefDatabase<SitePartDef>.GetNamed("BOB_Hospital");
 
             // find a suitable tile
@@ -39,11 +51,7 @@ namespace Hospital_Rimworld
             }, tile, raiders, false, (RulePack)null);
             site.doorsAlwaysOpenForPlayerPawns = true;
 
-            // update the slate
-            slate.Set("site", site);
-            slate.Set("faction", site.Faction);
-
-            // update the quest
+            // spawn the world object we created
             quest.SpawnWorldObject(site);
 
             // return our beautiful site so we can access it again
@@ -58,6 +66,10 @@ namespace Hospital_Rimworld
 
             // create the site
             Site site = GenerateSite(quest, slate);
+
+            // update slate
+            slate.Set("playerFaction", Faction.OfPlayer);
+            slate.Set("map", QuestGen_Get.GetMap(false, (int?)null));
         }
 
         protected override bool TestRunInt(Slate slate)
