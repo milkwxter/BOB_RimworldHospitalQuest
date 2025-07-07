@@ -12,10 +12,10 @@ namespace Hospital_Rimworld
     {
         private bool TryFindSiteTile(out PlanetTile tile, bool exitOnFirstTileFound = false)
         {
-            return TileFinder.TryFindNewSiteTile(out tile, 5, 15, allowCaravans: false, null, 0.5f, canSelectComboLandmarks: true, TileFinderMode.Near, exitOnFirstTileFound);
+            return TileFinder.TryFindNewSiteTile(out tile, 5, 8, allowCaravans: false, null, 0f, canSelectComboLandmarks: true, TileFinderMode.Near, exitOnFirstTileFound);
         }
 
-        private Site GenerateSite(Slate slate)
+        private Site GenerateSite(Quest quest, Slate slate)
         {
             // what is the enemy faction
             Faction raiders = Find.FactionManager.RandomRaidableEnemyFaction();
@@ -24,8 +24,7 @@ namespace Hospital_Rimworld
             SitePartDef sitePartDef = DefDatabase<SitePartDef>.GetNamed("BOB_Hospital");
 
             // find a suitable tile
-            PlanetTile tile;
-            TryFindSiteTile(out tile);
+            TryFindSiteTile(out PlanetTile tile);
 
             // create the parameters
             SitePartParams sitePartParams = new SitePartParams
@@ -34,18 +33,18 @@ namespace Hospital_Rimworld
             };
 
             // create the site
-            Site site = (Site)WorldObjectMaker.MakeWorldObject(WorldObjectDefOf.Site);
-            site.Tile = tile;
-            site.SetFaction(raiders);
-            site.AddPart(new SitePart(site, sitePartDef, sitePartParams));
+            Site site = QuestGen_Sites.GenerateSite((IEnumerable<SitePartDefWithParams>)new List<SitePartDefWithParams>
+            {
+                new SitePartDefWithParams(sitePartDef, sitePartParams)
+            }, tile, raiders, false, (RulePack)null);
             site.doorsAlwaysOpenForPlayerPawns = true;
-
-            // add it to the world
-            Find.WorldObjects.Add(site);
 
             // update the slate
             slate.Set("site", site);
             slate.Set("faction", site.Faction);
+
+            // update the quest
+            quest.SpawnWorldObject(site);
 
             // return our beautiful site so we can access it again
             return site;
@@ -57,13 +56,8 @@ namespace Hospital_Rimworld
             Slate slate = QuestGen.slate;
             Quest quest = QuestGen.quest;
 
-            // add site to map and update slate
-            Site site = GenerateSite(slate);
-
-            // do the quest part
-            QuestPart_SpawnWorldObject spawnPart = new QuestPart_SpawnWorldObject();
-            spawnPart.worldObject = site;
-            quest.AddPart(spawnPart);
+            // create the site
+            Site site = GenerateSite(quest, slate);
         }
 
         protected override bool TestRunInt(Slate slate)
