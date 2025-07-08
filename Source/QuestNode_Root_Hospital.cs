@@ -73,9 +73,14 @@ namespace Hospital_Rimworld
             slate.Set("map", QuestGen_Get.GetMap(false, (int?)null));
             slate.Set("hospital", site);
 
-            // signals
-            string inSignal_AllEnemiesDefeated = QuestGenUtility.HardcodedSignalWithQuestID("hospital.AllEnemiesDefeated");
-            string inSignal_MapRemoved = QuestGenUtility.HardcodedSignalWithQuestID("hospital.MapRemoved");
+            // custom part that watches the map for success and fail conditions
+            var part = new QuestPart_BOBHospitalUtilities
+            {
+                mapParent = site,
+                inSignalEnable = QuestGenUtility.HardcodedSignalWithQuestID("hospital.MapGenerated"),
+                quest = quest
+            };
+            quest.AddPart(part);
         }
 
         protected override bool TestRunInt(Slate slate)
