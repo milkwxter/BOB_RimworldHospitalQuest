@@ -6,6 +6,7 @@ using System;
 using Verse;
 using Verse.Grammar;
 using Verse.Noise;
+using System.Linq;
 
 namespace Hospital_Rimworld
 {
@@ -30,7 +31,7 @@ namespace Hospital_Rimworld
         private Site GenerateSite(Quest quest, Slate slate)
         {
             // what is the enemy faction
-            Faction raiders = Find.FactionManager.RandomRaidableEnemyFaction();
+            Faction raiders = Find.FactionManager.AllFactions.FirstOrDefault(f => f.def == FactionDef.Named("BOB_BarrelGang"));
 
             // find my sitepart
             SitePartDef sitePartDef = DefDatabase<SitePartDef>.GetNamed("BOB_Hospital");
