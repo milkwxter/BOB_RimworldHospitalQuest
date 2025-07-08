@@ -16,6 +16,25 @@
         <root Class="QuestNode_Sequence">
             <nodes>
                 <li Class="Hospital_Rimworld.QuestNode_Root_Hospital" />
+				
+				<li Class="QuestNode_Signal">
+					<inSignal>hospital.AllEnemiesDefeated</inSignal>
+					<node Class="QuestNode_Signal">
+						<inSignal>hospital.MapRemoved</inSignal>
+						<node Class="QuestNode_Sequence">
+							<nodes>
+							  <li Class="QuestNode_Letter">
+								<label TKey="LetterLabelQuestSuccess">Quest Success: [resolvedQuestName]</label>
+								<text TKey="LetterTextQuestSuccess">Good work.</text>
+								<letterDef>PositiveEvent</letterDef>
+							  </li>
+							  <li Class="QuestNode_End">
+								<outcome>Success</outcome>
+							  </li>
+							</nodes>
+						</node>
+					</node>
+				</li>
             </nodes>
         </root>
         <modExtensions>
